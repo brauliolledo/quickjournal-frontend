@@ -37,5 +37,9 @@
 		"vite": "^4.3.6",
 		"vitest": "^0.32.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@tanstack/svelte-query": "^5.0.0-alpha.78",
+		"axios": "^1.4.0"
+	}
 }
