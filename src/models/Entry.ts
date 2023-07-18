@@ -2,10 +2,10 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-export interface Entry
-{
+import type dayjs from 'dayjs';
+export interface Entry {
 	id: string;
 	body?: string;
-	createdAt?: string;
-	updatedAt: string;
+	createdAt: dayjs.Dayjs;
+	updatedAt: dayjs.Dayjs;
 }
