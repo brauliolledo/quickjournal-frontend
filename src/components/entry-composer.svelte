@@ -3,9 +3,12 @@
 	import { EntryManager } from '../api/EntityManager';
 	import type { Transient } from '../api/EntityManagerTypings';
 	import type { Entry } from '../models/EntityTypes';
+	import TrackSelect from './track-select.svelte';
 
 	let entryBody: string = ``;
-	// TODO: OPTIMISTIC UPDATES
+	let selectedTrackId: string | null = null;
+
+	// TODO: OPTIMISTIC UPDATES FOR IMPORTANT MARKS
 
 	const client = useQueryClient();
 
@@ -37,18 +40,20 @@
 </script>
 
 <div class="flex flex-row self-end w-full h-12">
+	<div class="mr-1"><TrackSelect bind:selectedTrackId /></div>
+
 	<textarea
 		bind:value={entryBody}
 		class="textarea textarea-bordered flex-grow"
 		placeholder="Start by writing an entry..."
 		on:keydown={(event) => {
-			console.log(event);
 			if (event.key == `Enter` && !event.shiftKey && !event.ctrlKey) {
 				event.preventDefault();
 
 				$createEntryMutation.mutate({
 					body: entryBody,
-					important: false
+					important: false,
+					trackId: selectedTrackId
 				});
 			}
 		}}
@@ -58,7 +63,8 @@
 		on:click={() =>
 			$createEntryMutation.mutate({
 				body: entryBody,
-				important: false
+				important: false,
+				trackId: selectedTrackId
 			})}>ADD</button
 	>
 </div>

@@ -2,7 +2,7 @@ import axios, { type AxiosResponse } from 'axios';
 
 import type { ForUpdating, Transient } from './EntityManagerTypings';
 import dayjs from 'dayjs';
-import type { Entry } from '../models/EntityTypes';
+import type { Entry, Track } from '../models/EntityTypes';
 
 const parseTimestampFieldsInEntity = <T>(entity: T, timestampFields: string[]) => {
 	return {
@@ -48,3 +48,4 @@ const entityManager = <T>(entityName: string, timestampFields: string[]) => ({
 });
 
 export const EntryManager = entityManager<Entry>(`Entry`, [`createdAt`, `updatedAt`]);
+export const TrackManager = entityManager<Track>(`Track`, [`createdAt`, `updatedAt`]);

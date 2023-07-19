@@ -10,6 +10,7 @@ export interface Entry {
 	createdAt: dayjs.Dayjs;
 	updatedAt: dayjs.Dayjs;
 	important: boolean;
+	trackId: string;
 	track: Track;
 }
 export interface Track {
