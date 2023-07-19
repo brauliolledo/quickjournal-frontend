@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { Entry } from '../models/Entry';
-import type { Transient } from './EntityManagerTypings';
+import type { ForUpdating, Transient } from './EntityManagerTypings';
 import dayjs from 'dayjs';
 
 const parseTimestampFieldsInEntity = <T>(entity: T, timestampFields: string[]) => {
@@ -36,7 +36,14 @@ const entityManager = <T>(entityName: string, timestampFields: string[]) => ({
 				`${import.meta.env.VITE_API_BASE_URL}/${entityName}?sorts=${sorts.join(',')}`
 			)
 			.then((r) => r.data.map((d) => parseTimestampFieldsInEntity(d, timestampFields)));
-	}
+	},
+	update: async (entity: ForUpdating<T> & { id: string }) =>
+		axios
+			.put<ForUpdating<T>, AxiosResponse<T>>(
+				`${import.meta.env.VITE_API_BASE_URL}/${entityName}/${entity.id}`,
+				entity
+			)
+			.then((r) => parseTimestampFieldsInEntity(r.data, timestampFields))
 });
 
 export const EntryManager = entityManager<Entry>(`Entry`, [`createdAt`, `updatedAt`]);

@@ -47,7 +47,8 @@
 				event.preventDefault();
 
 				$createEntryMutation.mutate({
-					body: entryBody
+					body: entryBody,
+					important: false
 				});
 			}
 		}}
@@ -56,7 +57,8 @@
 		class="btn btn-primary ml-4"
 		on:click={() =>
 			$createEntryMutation.mutate({
-				body: entryBody
+				body: entryBody,
+				important: false
 			})}>ADD</button
 	>
 </div>

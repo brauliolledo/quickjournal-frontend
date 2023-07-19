@@ -3,9 +3,11 @@
 //     the code is regenerated.
 
 import type dayjs from 'dayjs';
+
 export interface Entry {
 	id: string;
 	body?: string;
 	createdAt: dayjs.Dayjs;
 	updatedAt: dayjs.Dayjs;
+	important: boolean;
 }

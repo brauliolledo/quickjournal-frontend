@@ -2,9 +2,10 @@
 	import { createQuery } from '@tanstack/svelte-query';
 	import type { Entry } from '../models/Entry';
 	import { EntryManager } from '../api/EntityManager';
-	import { isNotTransient, type Transient } from '../api/EntityManagerTypings';
 	import Skeleton from '../ui/skeleton.svelte';
 	import dayjs from 'dayjs';
+	import EntryCard from './entry-card.svelte';
+	import type { Transient } from '../api/EntityManagerTypings';
 
 	const myEntries = createQuery<(Entry | Transient<Entry>)[]>({
 		queryKey: [`my-entries`],
@@ -24,16 +25,7 @@
 		{/if}
 		{#if $myEntries?.data != null}
 			{#each $myEntries?.data as entry}
-				<div class="card border-2 border-gray-200 m-1 bg-white">
-					<div class="card-body p-4">
-						{#if isNotTransient(entry)}
-							<div class="text-sm text-gray-400 font-bold">
-								{entry.createdAt.format('YYYY/MM/DD HH:mm')}
-							</div>
-						{/if}
-						<div class="whitespace-pre-wrap">{entry.body}</div>
-					</div>
-				</div>
+				<EntryCard {entry} />
 			{/each}
 		{/if}
 	</div>
