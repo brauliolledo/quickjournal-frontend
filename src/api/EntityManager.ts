@@ -1,7 +1,8 @@
 import axios, { type AxiosResponse } from 'axios';
-import type { Entry } from '../models/Entry';
+
 import type { ForUpdating, Transient } from './EntityManagerTypings';
 import dayjs from 'dayjs';
+import type { Entry } from '../models/EntityTypes';
 
 const parseTimestampFieldsInEntity = <T>(entity: T, timestampFields: string[]) => {
 	return {

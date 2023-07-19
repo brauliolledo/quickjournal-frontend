@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createMutation, useQueryClient } from '@tanstack/svelte-query';
-	import type { Entry } from '../models/Entry';
 	import { EntryManager } from '../api/EntityManager';
 	import type { Transient } from '../api/EntityManagerTypings';
+	import type { Entry } from '../models/EntityTypes';
 
 	let entryBody: string = ``;
 	// TODO: OPTIMISTIC UPDATES

@@ -10,4 +10,13 @@ export interface Entry {
 	createdAt: dayjs.Dayjs;
 	updatedAt: dayjs.Dayjs;
 	important: boolean;
+	track: Track;
+}
+export interface Track {
+	id: string;
+	name: string;
+	createdAt: dayjs.Dayjs;
+	updatedAt: dayjs.Dayjs;
+	colour: string;
+	entries: Entry[];
 }

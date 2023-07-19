@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { createQuery } from '@tanstack/svelte-query';
-	import type { Entry } from '../models/Entry';
 	import { EntryManager } from '../api/EntityManager';
 	import Skeleton from '../ui/skeleton.svelte';
-	import dayjs from 'dayjs';
 	import EntryCard from './entry-card.svelte';
 	import type { Transient } from '../api/EntityManagerTypings';
+	import type { Entry } from '../models/EntityTypes';
 
 	const myEntries = createQuery<(Entry | Transient<Entry>)[]>({
 		queryKey: [`my-entries`],
